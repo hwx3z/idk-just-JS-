@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Site JS</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+    }
+
+    button {
+      padding: 10px;
+      width: 100%;
+      background: #22c55e;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .dashboard {
+      text-align: left;
+    }
+
+    .card {
+      background: #334155;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="login">
+  <h2>Login</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Senha">
+  <button onclick="login()">Entrar</button>
+  <p id="erro" style="color:red;"></p>
+</div>
+
+<div class="container hidden" id="dashboard">
+  <h2>Dashboard</h2>
+  <div class="dashboard">
+    <div class="card">
+      <h3>Saldo</h3>
+      <p id="saldo">R$ 1000</p>
+      <button onclick="ganhar()">Ganhar +100</button>
+      <button onclick="gastar()">Gastar -50</button>
+    </div>
+
+    <div class="card">
+      <h3>Histórico</h3>
+      <ul id="historico"></ul>
+    </div>
+
+    <button onclick="logout()">Sair</button>
+  </div>
+</div>
+
+<script>
+  let saldo = 1000;
+
+  function login() {
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("password").value;
+    const erro = document.getElementById("erro");
+
+    if (!email.includes("@")) {
+      erro.innerText = "Email inválido";
+      return;
+    }
+
+    if (senha.length < 4) {
+      erro.innerText = "Senha muito curta";
+      return;
+    }
+
+    erro.innerText = "";
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("dashboard").classList.remove("hidden");
+  }
+
+  function atualizarSaldo() {
+    document.getElementById("saldo").innerText = "R$ " + saldo;
+  }
+
+  function adicionarHistorico(texto) {
+    const li = document.createElement("li");
+    li.innerText = texto;
+    document.getElementById("historico").appendChild(li);
+  }
+
+  function ganhar() {
+    saldo += 100;
+    atualizarSaldo();
+    adicionarHistorico("+100 ganho");
+  }
+
+  function gastar() {
+    saldo -= 50;
+    atualizarSaldo();
+    adicionarHistorico("-50 gasto");
+  }
+
+  function logout() {
+    location.reload();
+  }
+</script>
+
+</body>
+</html>
