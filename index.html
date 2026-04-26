@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Site JS</title>
+  <link src="styles.CSS" rel="stylesheet">
+</head>
+<body>
+
+<div class="container" id="login">
+  <h2>Login</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Senha">
+  <button onclick="login()">Entrar</button>
+  <p id="erro" style="color:red;"></p>
+</div>
+
+<div class="container hidden" id="dashboard">
+  <h2>Dashboard</h2>
+  <div class="dashboard">
+    <div class="card">
+      <h3>Saldo</h3>
+      <p id="saldo">R$ 1000</p>
+      <button onclick="ganhar()">Ganhar +100</button>
+      <button onclick="gastar()">Gastar -50</button>
+    </div>
+
+    <div class="card">
+      <h3>Histórico</h3>
+      <ul id="historico"></ul>
+    </div>
+
+    <button onclick="logout()">Sair</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
